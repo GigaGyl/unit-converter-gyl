@@ -13,10 +13,8 @@ private:
 
 public:
     Length();
-
     double toBase(double value, std::string unit) override;
-
-    double fromBase(double baseValue, std::string targetUnit) override;
+    double fromBase(double value, std::string unit) override;
 };
 
 #endif

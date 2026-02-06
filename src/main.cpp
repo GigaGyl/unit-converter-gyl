@@ -1,6 +1,6 @@
 #include "Converter.h"
 #include "Length.h"
-
+#include "Time.h"
 #include "FileHandler.h"
 #include "CsvHandler.h"
 
@@ -44,6 +44,9 @@ int main(){
     std::cout << "Enter target unit: ";
     std::cin >> unitTarget;
 
+    std::string choice; 
+    std::cout << "Enter type (length/time): "; 
+    std::cin >> choice; 
 
     Converter* myConverter = nullptr;
     if (choice == "length") 
@@ -65,8 +68,8 @@ int main(){
         try{
 
             double inputVal = std::stod(raw);
-            double baseVal = converter->toBase(inputVal, unitOrigin);
-            double result = converter->fromBase(baseVal, unitTarget);
+            double baseVal =myConverter->toBase(inputVal, unitOrigin);
+            double result = myConverter->fromBase(baseVal, unitTarget);
             resultCol.push_back(std::to_string(result));
         }
         catch (...) {
@@ -87,7 +90,7 @@ int main(){
     std::cout << "Success! Saved to " << outputFile << "\n";
 
     // Clean up memory
-    delete converter;
+    delete myConverter;
     delete fileHandler;
 
 

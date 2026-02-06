@@ -1,22 +1,28 @@
 #include "Time.h"
-#include <stdexcept>
-#include <map>
+#include <iostream>
 
-double Time::convert(double value, const std::string& startUnit, const std::string& endUnit) {
-    std::map<std::string, double> units = {
-        {"ns", 1e-9}, 
-        {"ms", 0.001}, 
-        {"s", 1.0},   
-        {"min", 60.0},   
-        {"hour", 3600.0} 
+Time::Time() {
+    // base = s
+    multipliers["ns"] = 1e-9;
+    multipliers["ms"] = 0.001;
+    multipliers["s"] = 1.0;
+    multipliers["min"] = 60.0;
+    multipliers["hour"] = 3600.0;
     };
 
-    if (units.find(startUnit) == units.end() || units.find(endUnit) == units.end()) {
-        throw std::invalid_argument("Unit not supported in Time converter.");
+double Time::toBase(double value, std::string unit){
+    if (multipliers.count(unit)) {
+        return value * multipliers[unit];
     }
-
-    double valueInSeconds = value * units[startUnit];
-    return valueInSeconds / units[endUnit];
+    std::cerr << "Error: Unit not found\n";
+    return 0.0; 
 }
 
+double Time::fromBase(double baseValue, std::string targetUnit) {
+    if (multipliers.count(targetUnit)) {
+        return baseValue / multipliers[targetUnit];
+    }
+    std::cerr << "Error: Unit not found\n";
+    return 0.0; // Error
+}
 

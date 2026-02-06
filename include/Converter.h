@@ -6,8 +6,8 @@
 
 class Converter {
 public:
-    virtual double toBase(double value, std::string unit) = 0;
-    virtual double fromBase(double baseValue, std::string unit) = 0;
+    virtual double toBase(double value, std::string unit) = 0; 
+    virtual double fromBase(double value, std::string unit) = 0;
     virtual ~Converter() {} 
 };
 

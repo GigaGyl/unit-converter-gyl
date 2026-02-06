@@ -2,11 +2,19 @@
 #define TIME_H
 
 #include "Converter.h"
+#include <iostream>
 #include <string>
+#include <map>
 
-class Time : public Converter {
+class Time : public Converter 
+{
+private:
+    std::map<std::string, double> multipliers;
+
 public:
-    double convert(double value, const std::string& fromUnit, const std::string& toUnit) override;
+    Time();
+    double toBase(double value, std::string unit) override;
+    double fromBase(double value, std::string unit) override;
 };
 
 #endif
