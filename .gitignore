@@ -1,0 +1,7 @@
+*.o
+*.exe
+converter
+build/
+
+.vscode/
+.DS_Store
