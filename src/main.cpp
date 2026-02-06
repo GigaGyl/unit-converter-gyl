@@ -45,7 +45,18 @@ int main(){
     std::cin >> unitTarget;
 
 
-    Converter* converter = new Length();
+    Converter* myConverter = nullptr;
+    if (choice == "length") 
+    {
+        myConverter = new Length();
+    }    
+    else if (choice == "time") 
+    { 
+        myConverter = new Time();
+    }   
+
+
+
     std::vector<std::string> originalCol = fileHandler->getColumn(selector);
     std::vector<std::string> resultCol;
 
